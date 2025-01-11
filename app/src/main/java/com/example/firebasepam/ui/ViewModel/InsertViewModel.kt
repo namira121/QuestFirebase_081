@@ -4,7 +4,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.firebasepam.repository.MahasiswaRepository
+import kotlinx.coroutines.launch
 import java.text.Normalizer.Form
 
 class InsertViewModel (
@@ -35,6 +37,22 @@ class InsertViewModel (
         )
         uiEvent = uiEvent.copy(isEntryValid = errorState)
         return errorState.isValid()
+    }
+
+    fun insertMhs(){
+        if (validateFields()){
+            viewModelScope.launch {
+                uiState = FormState.Loading
+                try {
+                    mhs.insertMahasiswa(uiEvent.insertUiEvent.toMhsModel())
+                    uiState = FormState.Success("Data berhasil disimpan")
+                } catch (e: Exception){
+                    uiState = FormState.Error("Data gagal disimpan")
+                }
+            }
+        }else{
+            uiState = FormState.Error("Data tidak Valid")
+        }
     }
 
 
