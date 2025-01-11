@@ -43,7 +43,9 @@ class NetworkMahasiswaRepository(
                 .document(mahasiswa.nim)
                 .set(mahasiswa)
                 .await()
-        }catch (e:Exception){}
+        }catch (e:Exception){
+            throw Exception("Gagal mengudate data mahasiswa: ${e.message}")
+        }
     }
 
     override suspend fun deleteMahasiswa(mahasiswa: Mahasiswa) {
