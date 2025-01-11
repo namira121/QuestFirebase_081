@@ -54,6 +54,9 @@ class NetworkMahasiswaRepository(
                     trySend(mhs)
                 }
             }
+        awaitClose {
+            mhsDocument.remove()
+        }
     }
 
 }
