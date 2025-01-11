@@ -13,7 +13,7 @@ import java.text.Normalizer.Form
 class InsertViewModel (
     private val mhs: MahasiswaRepository
 ):ViewModel(){
-    var uiEvent: InserUiState by mutableStateOf(InsertUiState())
+    var uiEvent: InsertUiState by mutableStateOf(InsertUiState())
         private set
     var uiState: FormState by mutableStateOf(FormState.Idle)
         private set
