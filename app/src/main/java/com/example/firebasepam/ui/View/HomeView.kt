@@ -70,8 +70,9 @@ fun HomeScreen(
         HomeStatus(
             homeUiState = viewModel.mhsUiState,
             retryAction = { viewModel.getMhs()}, modifier = Modifier.padding(innerpadding),
-            onDetailClick = onDetailClick, onDeleteClick = {
-                viewModel.getMhs()
+            onDetailClick = onDetailClick,
+            onDeleteClick = {
+                viewModel.deleteMahasiswa(it)
             }
         )
 
