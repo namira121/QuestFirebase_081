@@ -40,6 +40,11 @@ fun InsertMhsView(
 
                 viewModel.resetSnackBarMessage()
             }
+            is FormState.Error -> {
+                coroutineScope.launch {
+                    snackbarHostState.showSnackbar(uiState.message)
+                }
+            }
         }
     }
 }
