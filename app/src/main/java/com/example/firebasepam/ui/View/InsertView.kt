@@ -1,9 +1,13 @@
 package com.example.firebasepam.ui.View
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -14,14 +18,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.firebasepam.ui.ViewModel.FormState
+import com.example.firebasepam.ui.ViewModel.HomeUiState
+import com.example.firebasepam.ui.ViewModel.InsertUiState
 import com.example.firebasepam.ui.ViewModel.InsertViewModel
+import com.example.firebasepam.ui.ViewModel.MahasiswaEvent
 import com.example.firebasepam.ui.ViewModel.PenyediaViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.text.Normalizer.Form
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -92,6 +102,45 @@ fun InsertMhsView(
                     }
                 }
             )
+        }
+    }
+}
+
+@Composable
+fun InsertBodyMhs(
+    modifier: Modifier = Modifier,
+    onValueChange: (MahasiswaEvent) -> Unit,
+    uiState: InsertUiState,
+    onClick: () -> Unit,
+    homeUiState: FormState
+){
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        FormMahasiswa (
+            mahasiswaEvent = uiState.insertUiEvent,
+            onValueChange = onValueChange,
+            errorState = uiState.isEntryValid,
+            modifier= Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onClick,
+            modifier = Modifier.fillMaxWidth(),
+            enabled = homeUiState !is FormState.Loading,
+        ) {
+            if (homeUiState is FormState.Loading){
+                CircularProgressIndicator(
+                    color = Color.Gray,
+                    modifier = Modifier
+                        .size(20.dp)
+                        .padding(end = 8.dp)
+                )
+                Text("Loading")
+            }else{
+                Text("Add")
+            }
         }
     }
 }
