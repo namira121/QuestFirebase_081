@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.firebasepam.ui.ViewModel.FormErrorState
 import com.example.firebasepam.ui.ViewModel.FormState
 import com.example.firebasepam.ui.ViewModel.HomeUiState
 import com.example.firebasepam.ui.ViewModel.InsertUiState
@@ -143,4 +144,15 @@ fun InsertBodyMhs(
             }
         }
     }
+}
+
+@Composable
+fun FormMahasiswa(
+    mahasiswaEvent: MahasiswaEvent = MahasiswaEvent(),
+    onValueChange: (MahasiswaEvent) -> Unit,
+    errorState: FormErrorState = FormErrorState(),
+    modifier: Modifier = Modifier
+){
+    val jenisKelamin = listOf("Lakki-laki", "Perempuan")
+    val kelas = listOf("A", "B", "C","D", "E")
 }
