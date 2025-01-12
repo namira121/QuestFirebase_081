@@ -220,5 +220,62 @@ fun FormMahasiswa(
             text = errorState.jenisKelamin ?: "",
             color = Color.Red
         )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.alamat,
+            onValueChange = {
+                onValueChange(mahasiswaEvent.copy(alamat = it))
+            },
+            label = { Text("Alamat") },
+            isError = errorState.alamat != null,
+            placeholder = { Text("Masukkan Alamat") },
+        )
+        Text(text = errorState.alamat ?: "",
+            color = Color.Red
+        )
+
+        Spacer(modifier=Modifier.height(16.dp))
+
+        Text(text = "Kelas")
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            jenisKelamin.forEach{kelas ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ){
+                    RadioButton(
+                        selected = mahasiswaEvent.jenisKelamin == kelas,
+                        onClick = {
+                            onValueChange(mahasiswaEvent.copy(kelas = kelas))
+                        },
+                    )
+                    Text(
+                        text = kelas
+                    )
+                }
+            }
+        }
+        Text(
+            text = errorState.kelas ?: "",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.angkatan,
+            onValueChange = {
+                onValueChange(mahasiswaEvent.copy(angkatan = it))
+            },
+            label = { Text("Angkatan") },
+            isError = errorState.angkatan != null,
+            placeholder = { Text("Masukkan Angkatan") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+        Text(text = errorState.angkatan ?: "",
+            color = Color.Red
+        )
     }
 }
