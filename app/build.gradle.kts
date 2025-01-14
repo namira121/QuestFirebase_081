@@ -62,4 +62,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation ("com.google.android.gms:play-services-auth:20.6.0")
+    implementation ("com.google.android.gms:play-services-base:18.2.0")
+
 }

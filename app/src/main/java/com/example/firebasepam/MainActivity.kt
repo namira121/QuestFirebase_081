@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.firebasepam.ui.View.HomeScreen
+import com.example.firebasepam.ui.navigation.PengelolaHalaman
 import com.example.firebasepam.ui.theme.FirebasePAMTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,9 +21,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FirebasePAMTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen(navigateToltemEntry = {}, modifier = Modifier.padding(innerPadding))
-                }
+                PengelolaHalaman(
+                    modifier = Modifier
+                )
             }
         }
     }

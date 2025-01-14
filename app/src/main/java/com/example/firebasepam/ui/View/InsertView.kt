@@ -107,6 +107,7 @@ fun InsertMhsView(
                 onClick = {
                     if (viewModel.validateFields()){
                         viewModel.insertMhs()
+                        onNavigate()
                     }
                 }
             )
@@ -241,13 +242,13 @@ fun FormMahasiswa(
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
-            jenisKelamin.forEach{kelas ->
+            kelas.forEach{kelas ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
                 ){
                     RadioButton(
-                        selected = mahasiswaEvent.jenisKelamin == kelas,
+                        selected = mahasiswaEvent.kelas == kelas,
                         onClick = {
                             onValueChange(mahasiswaEvent.copy(kelas = kelas))
                         },

@@ -22,12 +22,12 @@ fun PengelolaHalaman(
         composable(DestinasiHome.route){
             HomeScreen(
                 navigateToltemEntry = {
-                    navController.navigate(DestinsiInsert.route)
+                    navController.navigate(DestinasiInsert.route)
                 },
             )
         }
 
-        composable(DestinsiInsert.route){
+        composable(DestinasiInsert.route){
             InsertMhsView(
                 onBack = {navController.popBackStack()},
                 onNavigate = {
