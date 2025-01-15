@@ -73,6 +73,7 @@ fun HomeScreen(
             onDetailClick = onDetailClick,
             onDeleteClick = {
                 viewModel.deleteMahasiswa(it)
+                viewModel.getMhs()
             }
         )
 
@@ -204,7 +205,7 @@ fun MhsCard(
             }
 
             Text(
-                text = mahasiswa.kelas,
+                text = mahasiswa.judul,
                 style = MaterialTheme.typography.titleMedium
             )
             Text(
